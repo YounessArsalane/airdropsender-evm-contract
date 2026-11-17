@@ -19,20 +19,25 @@ module.exports = {
             /* The protocol limit per transaction, so estimates cannot search above it */
             blockGasLimit: 16_777_216
         },
-        sepolia: {
-            url: `https://eth-sepolia.g.alchemy.com/v2/${alchemyKey}`,
+        /* BNB Smart Chain mainnet, where the contract runs at 0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616 */
+        bnb: {
+            url: `https://bnb-mainnet.g.alchemy.com/v2/${alchemyKey}`,
+            chainId: 56,
             accounts: deployerKey ? [deployerKey] : []
         },
         mainnet: {
             url: `https://eth-mainnet.g.alchemy.com/v2/${alchemyKey}`,
+            chainId: 1,
             accounts: deployerKey ? [deployerKey] : []
         },
         base: {
             url: `https://base-mainnet.g.alchemy.com/v2/${alchemyKey}`,
+            chainId: 8453,
             accounts: deployerKey ? [deployerKey] : []
         },
-        bnb: {
-            url: `https://bnb-mainnet.g.alchemy.com/v2/${alchemyKey}`,
+        sepolia: {
+            url: `https://eth-sepolia.g.alchemy.com/v2/${alchemyKey}`,
+            chainId: 11155111,
             accounts: deployerKey ? [deployerKey] : []
         }
     },

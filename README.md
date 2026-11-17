@@ -1,22 +1,46 @@
 # AirdropSender.com EVM contract
 
-The smart contract behind the [AirdropSender.com](https://airdropsender.com) multisender for Ethereum, Base and BNB Smart Chain. It sends ETH (or BNB) or an ERC-20 / BEP-20 token to many recipients in one transaction.
+The multisender smart contract behind [AirdropSender.com](https://airdropsender.com), deployed on **BNB Smart Chain (BSC)**, Ethereum and Base. It sends BNB or ETH, or a BEP-20 / ERC-20 token, to many recipients in one transaction.
 
-The tools that use it:
+This is the official source code of the contract. The tools that use it:
 
+- BNB Smart Chain: https://bsc.airdropsender.com
 - Ethereum: https://ethereum.airdropsender.com
 - Base: https://base.airdropsender.com
-- BNB Smart Chain: https://bsc.airdropsender.com
 
-## Deployed contracts
+## Technology Stack
 
-| Chain | Address | Verified source |
+- **Blockchain**: BNB Smart Chain, Ethereum and Base
+- **Smart Contracts**: Solidity 0.8.20
+- **Development**: Hardhat, OpenZeppelin Contracts 5
+
+## Supported Networks
+
+- **BNB Smart Chain Mainnet** (Chain ID: 56)
+- **Ethereum Mainnet** (Chain ID: 1)
+- **Base Mainnet** (Chain ID: 8453)
+
+The same networks are configured in `hardhat.config.cjs`.
+
+## Contract Addresses
+
+| Network | AirdropSender contract | Verified source |
 |---|---|---|
-| Ethereum | `0x49DE9a3CaD11f3Af60CFBa50B047b8B82ec90F42` | [Etherscan](https://etherscan.io/address/0x49DE9a3CaD11f3Af60CFBa50B047b8B82ec90F42#code) |
-| Base | `0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616` | [BaseScan](https://basescan.org/address/0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616#code) |
-| BNB Smart Chain | `0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616` | [BscScan](https://bscscan.com/address/0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616#code) |
+| BNB Smart Chain Mainnet | `0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616` | [BscScan](https://bscscan.com/address/0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616#code) |
+| Ethereum Mainnet | `0x49DE9a3CaD11f3Af60CFBa50B047b8B82ec90F42` | [Etherscan](https://etherscan.io/address/0x49DE9a3CaD11f3Af60CFBa50B047b8B82ec90F42#code) |
+| Base Mainnet | `0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616` | [BaseScan](https://basescan.org/address/0x3B9E2482A1Ca06898447C31Be8B88B9F91D87616#code) |
+
+There is no token contract: AirdropSender.com has no token of its own.
 
 All three are also verified on [Sourcify](https://sourcify.dev) as an exact match. `contracts/AirdropSender.sol` in this repository is the source that was deployed: Solidity 0.8.20, optimizer enabled with 200 runs.
+
+## Features
+
+- Sends BNB, ETH, or any BEP-20 / ERC-20 token to up to 400 recipients in one transaction.
+- Non-custodial: tokens go directly from the sender to each recipient.
+- No owner, no pause and no upgrade path.
+- A recipient whose transfer fails is skipped and reported, so the rest of the batch still arrives.
+- Overpayment and the amount of failed native-coin transfers are refunded in the same transaction.
 
 ## What the contract does
 
